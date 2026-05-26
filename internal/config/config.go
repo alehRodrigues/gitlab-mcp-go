@@ -3,6 +3,8 @@ package config
 import (
 	"os"
 	"strings"
+
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -15,6 +17,7 @@ type Config struct {
 }
 
 func Load() *Config {
+	godotenv.Load()
 	return &Config{
 		Token:          os.Getenv("GITLAB_PERSONAL_ACCESS_TOKEN"),
 		APIURL:         normalizeURL(os.Getenv("GITLAB_API_URL")),

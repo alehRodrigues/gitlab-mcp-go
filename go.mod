@@ -2,7 +2,10 @@ module github.com/user/gitlab-mcp-go
 
 go 1.26.2
 
-require github.com/metoro-io/mcp-golang v0.16.1
+require (
+	github.com/joho/godotenv v1.5.1
+	github.com/metoro-io/mcp-golang v0.16.1
+)
 
 require (
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
