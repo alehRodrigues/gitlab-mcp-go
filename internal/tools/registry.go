@@ -67,6 +67,7 @@ func RegisterAll(server *mcp_golang.Server, client *gitlab.Client, cfg *config.C
 	registerNoteTools(reg, client)
 	registerNamespaceTools(reg, client)
 	registerLabelTools(reg, client)
+	registerCommitTools(reg, client)
 	registerWikiTools(reg, client)
 	registerPipelineTools(reg, client)
 	registerMilestoneTools(reg, client)
@@ -84,6 +85,8 @@ var readOnlyTools = []string{
 	"list_labels", "get_label", "list_group_projects", "get_repository_tree",
 	"list_milestones", "get_milestone", "get_milestone_issue", "get_milestone_merge_requests",
 	"get_milestone_burndown_events", "list_wiki_pages", "get_wiki_page", "get_users",
+	"list_commits", "get_commit", "get_commit_diff", "get_commit_refs",
+	"get_commit_comments", "get_commit_merge_requests",
 }
 
 type toolReg func(name, desc string, handler any)

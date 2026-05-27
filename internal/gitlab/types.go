@@ -158,18 +158,32 @@ type Tree struct {
 }
 
 // Commit
+type CommitStats struct {
+	Additions int `json:"additions"`
+	Deletions int `json:"deletions"`
+	Total     int `json:"total"`
+}
+
+type CommitRef struct {
+	Type string `json:"type"`
+	Name string `json:"name"`
+}
+
 type Commit struct {
-	ID            string   `json:"id"`
-	ShortID       string   `json:"short_id"`
-	Title         string   `json:"title"`
-	AuthorName    string   `json:"author_name"`
-	AuthorEmail   string   `json:"author_email"`
-	AuthoredDate  string   `json:"authored_date"`
-	CommitterName string   `json:"committer_name"`
-	CommitterEmail string  `json:"committer_email"`
-	CommittedDate string   `json:"committed_date"`
-	WebURL        string   `json:"web_url"`
-	ParentIDs     []string `json:"parent_ids"`
+	ID             string       `json:"id"`
+	ShortID        string       `json:"short_id"`
+	Title          string       `json:"title"`
+	Message        string       `json:"message,omitempty"`
+	AuthorName     string       `json:"author_name"`
+	AuthorEmail    string       `json:"author_email"`
+	AuthoredDate   string       `json:"authored_date"`
+	CommitterName  string       `json:"committer_name"`
+	CommitterEmail string       `json:"committer_email"`
+	CommittedDate  string       `json:"committed_date"`
+	WebURL         string       `json:"web_url"`
+	ParentIDs      []string     `json:"parent_ids"`
+	Stats          *CommitStats `json:"stats,omitempty"`
+	Status         *string      `json:"status,omitempty"`
 }
 
 // Reference (Branch)
@@ -438,6 +452,16 @@ type PaginatedDiscussions struct {
 
 // Users response
 type UsersResponse map[string]*User
+
+// Commit comment
+type CommitComment struct {
+	Note      string `json:"note"`
+	Author    User   `json:"author"`
+	CreatedAt string `json:"created_at,omitempty"`
+	LineType  string `json:"line_type,omitempty"`
+	Line      *int   `json:"line,omitempty"`
+	Path      string `json:"path,omitempty"`
+}
 
 // File operation for push_files
 type FileOperation struct {

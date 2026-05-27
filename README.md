@@ -69,6 +69,7 @@ Compatível com qualquer cliente MCP via stdio: **Visual Studio**, **VS Code**, 
 
 - **Repositório**: create_or_update_file, search_repositories, create_repository, get_file_contents, push_files, get_repository_tree, fork_repository
 - **Branches**: create_branch, get_branch_diffs
+- **Commits**: list_commits, get_commit, get_commit_diff, get_commit_refs, get_commit_comments, create_commit_comment, get_commit_merge_requests
 - **Merge Requests**: create_merge_request, get_merge_request, get_merge_request_diffs, update_merge_request, list_merge_requests, create_merge_request_thread, mr_discussions, update_merge_request_note, create_merge_request_note, create_note
 - **Issues**: create_issue, list_issues, get_issue, update_issue, delete_issue, list_issue_links, list_issue_discussions, get_issue_link, create_issue_link, delete_issue_link, update_issue_note, create_issue_note
 - **Namespaces**: list_namespaces, get_namespace, verify_namespace
