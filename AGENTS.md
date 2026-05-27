@@ -43,3 +43,10 @@ MCP framework: `github.com/metoro-io/mcp-golang` v0.16.1, transport `stdio.NewSt
 - Project IDs are passed as strings and URL-decoded via `client.DecodeProjectID()` to handle URL-encoded paths like `group%2Fsubgroup%2Fproject`.
 - No tests exist anywhere in the repo.
 - Go 1.26.2 — verify compatibility if introducing new stdlib features.
+
+## Workflow
+
+After any code change:
+1. Update `README.md` if new tools, config vars, or features were added
+2. Run `go build -o build/gitlab-mcp-go .` to verify compilation
+3. Stage changes (`git add -A`) and commit with a descriptive message
