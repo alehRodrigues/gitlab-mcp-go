@@ -2,6 +2,7 @@ package config
 
 import (
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/joho/godotenv"
@@ -17,7 +18,7 @@ type Config struct {
 }
 
 func Load() *Config {
-	godotenv.Load()
+	loadEnv()
 	return &Config{
 		Token:          os.Getenv("GITLAB_PERSONAL_ACCESS_TOKEN"),
 		APIURL:         normalizeURL(os.Getenv("GITLAB_API_URL")),
@@ -25,6 +26,13 @@ func Load() *Config {
 		UseWiki:        os.Getenv("USE_GITLAB_WIKI") == "true",
 		UseMilestone:   os.Getenv("USE_MILESTONE") == "true",
 		UsePipeline:    os.Getenv("USE_PIPELINE") == "true",
+	}
+}
+
+func loadEnv() {
+	exe, err := os.Executable()
+	if err == nil {
+		godotenv.Load(filepath.Join(filepath.Dir(exe), ".env"))
 	}
 }
 

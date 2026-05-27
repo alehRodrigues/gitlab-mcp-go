@@ -4,9 +4,12 @@
 
 ```shell
 go build -o build/gitlab-mcp-go .
+go vet ./...
+go mod tidy
+go test ./...  # no tests exist yet
 ```
 
-Output goes to `build/`. No linter/formatter/test config exists. No `go vet` or `golangci-lint` in use.
+Output goes to `build/`. No linter/formatter config exists. No `golangci-lint` in use.
 
 ## Config
 
@@ -41,7 +44,7 @@ MCP framework: `github.com/metoro-io/mcp-golang` v0.16.1, transport `stdio.NewSt
 - Module path in `go.mod` is `github.com/user/gitlab-mcp-go` — a placeholder. Do not treat it as the canonical import path without confirming.
 - `internal/tools/toURLValues()` explicitly skips fields tagged `json:"project_id"` — project IDs are passed as positional args, not query params.
 - Project IDs are passed as strings and URL-decoded via `client.DecodeProjectID()` to handle URL-encoded paths like `group%2Fsubgroup%2Fproject`.
-- No tests exist anywhere in the repo.
+- No tests exist yet. Unit tests go in `*_test.go` files alongside the package they test.
 - Go 1.26.2 — verify compatibility if introducing new stdlib features.
 
 ## Workflow
@@ -49,4 +52,6 @@ MCP framework: `github.com/metoro-io/mcp-golang` v0.16.1, transport `stdio.NewSt
 After any code change:
 1. Update `README.md` if new tools, config vars, or features were added
 2. Run `go build -o build/gitlab-mcp-go .` to verify compilation
-3. Stage changes (`git add -A`) and commit with a descriptive message
+3. Run `go vet ./...` to check for issues
+4. Run `go mod tidy` to keep go.mod/go.sum clean
+5. Stage changes (`git add -A`) and commit with a descriptive message
